@@ -1,5 +1,6 @@
 package com.flashcard.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,5 +14,6 @@ class Sm2ServiceTest {
 
     @Test
     void execute() {
+        Assertions.assertEquals(1,1);
     }
 }
