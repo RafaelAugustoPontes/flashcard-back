@@ -43,7 +43,7 @@ public class CardClassService {
 
     public ResponseEntity<CardClassDTO> getById(String id) {
         Optional<CardClassDocument> optional = cardClassRepository.findById(id);
-        if (optional.isEmpty())
+        if (optional.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         CardClassDocument cardClassDocument = optional.get();
 
@@ -53,7 +53,7 @@ public class CardClassService {
 
     public ResponseEntity<CardClassDTO> update(String id, CardClassDTO cardClassDTO) {
         Optional<CardClassDocument> optional = this.cardClassRepository.findById(id);
-        if (optional.isEmpty())
+        if (optional.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         CardClassDocument cardClassDocument = optional.get();
         cardClassDocument.setName(cardClassDTO.getName());
@@ -65,7 +65,7 @@ public class CardClassService {
     @Transactional
     public ResponseEntity<?> delete(String id) {
         Optional<CardClassDocument> optional = cardClassRepository.findById(id);
-        if (optional.isEmpty())
+        if (optional.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         CardClassDocument cardClassDocument = optional.get();

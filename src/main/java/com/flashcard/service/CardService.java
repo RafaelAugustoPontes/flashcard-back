@@ -35,7 +35,7 @@ public class CardService {
 
     public ResponseEntity<CardDTO> getById(String id) {
         Optional<CardDocument> optional = cardRepository.findById(id);
-        if (optional.isEmpty())
+        if (optional.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<CardDTO>(new CardDTO(optional.get()), HttpStatus.OK);
     }
@@ -46,7 +46,7 @@ public class CardService {
         card.setTerm(cardDTO.getTerm());
         card.setDefinition(cardDTO.getDefinition());
 
-        CardClassDocument classDocument = cardClassRepository.findById(cardDTO.getIdCardClass()).orElseThrow();
+        CardClassDocument classDocument = cardClassRepository.findById(cardDTO.getIdCardClass()).orElseThrow(RuntimeException::new);
         classDocument.addCard(card);
         card.setCardClassDocument(classDocument);
 
@@ -58,7 +58,7 @@ public class CardService {
 
     public ResponseEntity<CardDTO> update(final String id, CardDTO cardDTO) {
         Optional<CardDocument> optional = cardRepository.findById(id);
-        if (optional.isEmpty())
+        if (optional.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         CardDocument cardDocument = optional.get();
@@ -71,7 +71,7 @@ public class CardService {
 
     public ResponseEntity<?> delete(final String id) {
         Optional<CardDocument> optional = cardRepository.findById(id);
-        if (optional.isEmpty())
+        if (optional.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         cardRepository.delete(optional.get());
