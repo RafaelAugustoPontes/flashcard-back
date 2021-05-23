@@ -2,7 +2,6 @@ package com.flashcard.service;
 
 import com.flashcard.document.CardClassDocument;
 import com.flashcard.dto.CardClassDTO;
-import com.flashcard.dto.CardDTO;
 import com.flashcard.repository.CardClassRepository;
 import com.flashcard.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;

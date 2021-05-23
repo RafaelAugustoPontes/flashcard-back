@@ -1,4 +1,4 @@
-package com.flashcard.service.spacedrepetition;
+package com.flashcard.service.sm2.model;
 
 import java.math.BigDecimal;
 
